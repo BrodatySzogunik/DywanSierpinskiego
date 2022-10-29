@@ -69,7 +69,7 @@ void printWhiteRectange(point2 point, float width) {
 
 
 	float dividedWidth = width / 2;
-	Colour color{ 0.0f, 0.0f, 0.0f };
+	Colour color{ 1.0f, 1.0f, 1.0f };
 
 	point2 a = { point[0] - dividedWidth,point[1] + dividedWidth },
 		b = { point[0] - dividedWidth, point[1] - dividedWidth },
@@ -174,22 +174,53 @@ void RenderScene(void) {
 	point2 point = { 0,0 };
 
 
-
+	int userChoice;
 	int maximumLevelOfCarpet;
 	int levelOfDeformation;
 
-	std::cout << "podaj maksymalny poziom dywanu jaki ma zostać wyrenderowany:" << std::endl;
-	std::cin >> maximumLevelOfCarpet;
+	std::cout << "podaj tryb:\n 1-generowanie małych kwadratów\n 2-wycinanie\n";
+	std::cin >> userChoice;
 
-	//std::cout << "podaj stopień deformacji dywanu:" << std::endl;
-	//std::cin >> levelOfDeformation;
 
-	for (int i = 0; i < maximumLevelOfCarpet; i++) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		cutCarpet(point, 81, i);
+	switch (userChoice) {
+	case 1:
+		std::cout << "podaj maksymalny poziom dywanu jaki ma zostać wyrenderowany:" << std::endl;
+		std::cin >> maximumLevelOfCarpet;
+
+		std::cout << "podaj stopień deformacji dywanu:" << std::endl;
+		std::cin >> levelOfDeformation;
+
+		printColorfulRectange(point, 81);
 		glFlush();
-		Sleep(1000);
+		for (int i = 0; i < maximumLevelOfCarpet; i++) {
+			glClear(GL_COLOR_BUFFER_BIT);
+			generateCarpet(point, 81, i, levelOfDeformation);
+			glFlush();
+			Sleep(1000);
+		}
+		break;
+
+
+		case 2:
+			std::cout << "podaj maksymalny poziom dywanu jaki ma zostać wyrenderowany:" << std::endl;
+			std::cin >> maximumLevelOfCarpet;
+
+			printColorfulRectange(point, 81);
+			glFlush();
+			for (int i = 0; i < maximumLevelOfCarpet; i++) {
+				cutCarpet(point, 81, i);
+				glFlush();
+				Sleep(1000);
+			}
+			break;
 	}
+
+	
+
+	
+
+
+	
 
 }
 
