@@ -1,0 +1,3 @@
+﻿  Dywanik.cpp
+C:\Users\kmord\source\repos\Dywanik\Dywanik\Dywanik.cpp(179,6): warning C4101: "levelOfDeformation": lokalna zmienna, do której nie istnieje odwołanie
+  Dywanik.vcxproj -> C:\Users\kmord\source\repos\Dywanik\Debug\Dywanik.exe
